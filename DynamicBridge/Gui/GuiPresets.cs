@@ -529,6 +529,7 @@ public static class GuiPresets
                         if(fullList != null) ImGuiEx.Tooltip(UI.RandomNotice + fullList);
 
                         //Add random Glamourer Button
+                        // This is the randomisation that works
                         if(C.StickyGlamourer && C.Sticky)
                         {
                             ImGui.SameLine();
@@ -537,17 +538,19 @@ public static class GuiPresets
                                 if(preset.Glamourer.Count + preset.ComplexGlamourer.Count > 1)
                                 {
                                     var old = preset.StickyRandomG;
-                                    preset.StickyRandomG = Random.Shared.Next(0, preset.Glamourer.Count + preset.ComplexGlamourer.Count);
+                                    // Same as all other randomisations
+                                    preset.StickyRandomG = Random.Shared.Next(0, preset.Glamourer.Count + preset.ComplexGlamourer.Count); 
                                     P.ForceUpdate = true;
                                     if(preset.StickyRandomG == old)
                                     {
+                                        // Different from other randomisations
                                         preset.StickyRandomG = (preset.StickyRandomG + 1) % (preset.Glamourer.Count + preset.ComplexGlamourer.Count);
                                     }
                                     ;
                                 }
                                 else { preset.StickyRandomG = 0; }
                             }
-                            ImGuiEx.Tooltip($"Randomize Glamourer Used.");
+                            ImGuiEx.Tooltip($"Randomize selected Glamourer design.");
                         }
                         filterCnt++;
                     }
