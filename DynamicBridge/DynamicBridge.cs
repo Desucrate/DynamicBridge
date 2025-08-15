@@ -160,7 +160,10 @@ public unsafe class DynamicBridge : IDalamudPlugin
                 }
                 if(C.StickyGlamourer && C.Sticky)
                 {
-                    preset.StickyRandomG = Random.Shared.Next(0, preset.Glamourer.Count + preset.ComplexGlamourer.Count);
+                    //preset.StickyRandomG = Random.Shared.Next(0, preset.Glamourer.Count + preset.ComplexGlamourer.Count);
+                    
+                    // This line seems to be what makes randomisation work in the GUI button
+                    preset.StickyRandomG = (preset.StickyRandomG + 1) % (preset.Glamourer.Count + preset.ComplexGlamourer.Count);
                 }
                 if(C.StickyHonorific && C.Sticky)
                 {
